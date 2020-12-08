@@ -8,7 +8,7 @@ from django.test import TestCase
 class CommandTests(TestCase):
 
     def test_wait_for_db_ready(self):
-        """ test waiting for db when db is available """
+        """test waiting for db when db is available."""
         with patch('django.db.utils.ConnectionHandler.__getitem__') as gi:
             gi.return_value = True
             call_command('wait_for_db')
@@ -16,7 +16,7 @@ class CommandTests(TestCase):
 
     @patch('time.sleep', return_value=True)
     def test_wait_for_db(self, ts):
-        """ test waiting for db """
+        """test waiting for db."""
         with patch('django.db.utils.ConnectionHandler.__getitem__') as gi:
             gi.side_effect = [OperationalError] * 5 + [True]
             call_command('wait_for_db')
